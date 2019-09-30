@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 def createTime = new Date().format("YYMMdd", TimeZone.getTimeZone("GMT+08:00"))
-def Code = 4
+def Code = 5
 def Name = "0.0"
 def LibraryName = 'SupperSupport'
 
