@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+def createTime = new Date().format("YYMMdd", TimeZone.getTimeZone("GMT+08:00"))
+def Code = 4
+def Name = "0.0"
+def LibraryName = 'SupperSupport'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode Code
+        versionName "${Name}.${Code}"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Logger日志框架
+    implementation 'com.orhanobut:logger:2.2.0'
+}
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    artifactId = "${LibraryName}" //项目名称
+    uploadName = "${LibraryName}" //展示名字
+    publishVersion = "${Name}.${Code}" //版本号
+    userOrg = rootProject.ext.userOrg //bintray账户下某个组织id
+    groupId = rootProject.ext.groupId //maven仓库下库的包名，一般为模块包名
+    desc = rootProject.ext.desc //项目介绍，可以不写
+    website = rootProject.ext.website //项目主页，可以不写
+    licences = rootProject.ext.licences
+    repoName = rootProject.ext.repoName //仓库名
+}

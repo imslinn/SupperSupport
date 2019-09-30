@@ -1,0 +1,9 @@
+
+ext {
+    userOrg = 'china-imslinn' //bintray账户下某个组织id
+    repoName = "maven" //仓库名
+    groupId = 'com.github.slinn.module.suppersupport' //maven仓库下库的包名，一般为模块包名
+    desc = 'tools for android developer' //项目介绍，可以不写
+    website = 'https://github.com/imslinn' //项目主页，可以不写
+    licences = ['Apache-2.0'] //描述，填写licences
+}
